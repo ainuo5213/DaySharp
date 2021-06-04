@@ -82,7 +82,7 @@ namespace HolidaySharp
             if (ValidateMonth(month))
             {
                 int year = DateTime.Now.Year;
-                return GetMonthlyHolidays(year, month);
+                return GetLunarMonthlyHolidays(year, month);
             }
             return default;
         }
@@ -104,7 +104,7 @@ namespace HolidaySharp
         {
             if (ValidateTime(lunarTime))
             {
-                return GetMonthlyHolidays(lunarTime.Year, lunarTime.Month);
+                return GetLunarMonthlyHolidays(lunarTime.Year, lunarTime.Month);
             }
 
             return default;
@@ -112,14 +112,14 @@ namespace HolidaySharp
 
         public static IEnumerable<LunarHoliday> GetLunarYearlyHolidays()
         {
-            return GetYearlyHolidays(Holidays.Solar2Lunar(DateTime.Now));
+            return GetLunarYearlyHolidays(Holidays.Solar2Lunar(DateTime.Now));
         }
 
         public static IEnumerable<LunarHoliday> GetLunarYearlyHolidays(DateTime lunarTime)
         {
             if (ValidateTime(lunarTime))
             {
-                return GetYearlyHolidays(lunarTime.Year);
+                return GetLunarYearlyHolidays(lunarTime.Year);
             }
 
             return default;

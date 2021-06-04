@@ -79,7 +79,7 @@ namespace HolidaySharp
         {
             if (ValidateMonth(month))
             {
-                return GetMonthlyHolidays(DateTime.Now.Year, month);
+                return GetSolarMonthlyHolidays(DateTime.Now.Year, month);
             }
 
             return default;
@@ -102,7 +102,7 @@ namespace HolidaySharp
         {
             if (ValidateTime(solarTime))
             {
-                return GetMonthlyHolidays(solarTime.Year, solarTime.Month);
+                return GetSolarMonthlyHolidays(solarTime.Year, solarTime.Month);
             }
 
             return default;
@@ -110,14 +110,14 @@ namespace HolidaySharp
 
         public static IEnumerable<SolarHoliday> GetSolarYearlyHolidays()
         {
-            return GetYearlyHolidays(DateTime.Now);
+            return GetSolarYearlyHolidays(DateTime.Now);
         }
 
         public static IEnumerable<SolarHoliday> GetSolarYearlyHolidays(DateTime solarTime)
         {
             if (ValidateTime(solarTime))
             {
-                return GetYearlyHolidays(solarTime.Year);
+                return GetSolarYearlyHolidays(solarTime.Year);
             }
 
             return default;
