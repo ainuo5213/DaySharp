@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Company />
+    <Authors>ainuo5213</Authors>
+    <RepositoryUrl>https://github.com/ainuo5213/HolidaySharp</RepositoryUrl>
+    <NeutralLanguage>zh-CN</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/ainuo5213/HolidaySharp</PackageProjectUrl>
+    <Description>用于获取中国农历、阳历节日和部分国际重要节日、中国节气</Description>
   </PropertyGroup>
 
 </Project>
