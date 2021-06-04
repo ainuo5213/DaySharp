@@ -99,9 +99,9 @@ namespace HolidaySharp
             return solarTermHolidays;
         }
 
-        public static IEnumerable<SolarTermHoliday> GetSolarTermHolidays(DateTime currentTIme)
+        public static IEnumerable<SolarTermHoliday> GetSolarTermHolidays(DateTime currentTime)
         {
-            return GetSolarTermHolidays(currentTIme.Year);
+            return GetSolarTermHolidays(currentTime.Year);
         }
 
         private static SolarTerm GetSolarTerm(DateTime solarTime)

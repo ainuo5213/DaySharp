@@ -60,12 +60,16 @@ namespace HolidaySharp
             this.SolarTime = Holidays.Lunar2Solar(lunarTime);
         }
 
-        public LunarHoliday(int month, int day)
+        public LunarHoliday(int year, int month, int day)
         {
-            var lunarTime = new DateTime(DateTime.Now.Year, month, day);
+            var lunarTime = new DateTime(year, month, day);
             this.LunarTime = lunarTime;
             this.SolarTime = Holidays.Lunar2Solar(lunarTime);
             this.Name = GetHolidayName(this.LunarTime);
+        }
+
+        public LunarHoliday(int month, int day) : this(DateTime.Now.Year, month, day)
+        {
         }
 
         public static IEnumerable<Holiday> GetMonthlyHolidays(int month)
