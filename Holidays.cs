@@ -79,9 +79,6 @@ namespace HolidaySharp
         {
             Dictionary<string, DateTime> lunarHolidays = new Dictionary<string, DateTime>()
             {
-                { NorthernLittleNewYear, FormatLunarHoliday(year, 12, 23) },
-                { SouthernLittleNewYear, FormatLunarHoliday(year, 12, 24) },
-                { SprinFestivalEve, FormatLunarHoliday(year, 12, 30) },
                 { SpringFestival, FormatLunarHoliday(year, 1, 1) },
                 { SecondDayAfterSpringFestival, FormatLunarHoliday(year, 1, 2) },
                 { ThirdDayAfterSpringFestival, FormatLunarHoliday(year, 1, 3) },
@@ -95,6 +92,9 @@ namespace HolidaySharp
                 { MidAutumnFestival, FormatLunarHoliday(year, 8, 15) },
                 { DoubleNinthFestival, FormatLunarHoliday(year, 9, 9) },
                 { SpiritFestival, FormatLunarHoliday(year, 10, 15) },
+                { NorthernLittleNewYear, FormatLunarHoliday(year, 12, 23) },
+                { SouthernLittleNewYear, FormatLunarHoliday(year, 12, 24) },
+                { SprinFestivalEve, FormatLunarHoliday(year, 12, 30) },
             };
 
             return lunarHolidays;
@@ -146,7 +146,13 @@ namespace HolidaySharp
 
         private static DateTime FormatLunarHoliday(int year, int month, int day)
         {
-            return Lunar2Solar(new DateTime(year, month, day));
+            var maxDaysInMonth = chineseLunisolarCalendar.GetDaysInMonth(year, month, ChineseLunisolarCalendar.ChineseEra);
+            if (day > maxDaysInMonth)
+            {
+                day = maxDaysInMonth;
+            }
+
+            return new DateTime(year, month, day);
         }
 
         private static DateTime GetThanksGivingDay(int year)
@@ -197,7 +203,13 @@ namespace HolidaySharp
                 month += 1; // 闰月之后月份要+1才对的上
             }
 
-            return new DateTime(year, month, day);
+            var limitDays = chineseLunisolarCalendar.GetDaysInMonth(year, month);
+            if (day > limitDays)
+            {
+                day = limitDays;
+            }
+
+            return chineseLunisolarCalendar.ToDateTime(year, month, day, 0, 0, 0, 0, ChineseLunisolarCalendar.ChineseEra);
         }
 
         public static DateTime Solar2Lunar(DateTime datetime)

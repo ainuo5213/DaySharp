@@ -8,6 +8,7 @@
     <NeutralLanguage>zh-CN</NeutralLanguage>
     <PackageProjectUrl>https://github.com/ainuo5213/HolidaySharp</PackageProjectUrl>
     <Description>用于获取中国农历、阳历节日和部分国际重要节日、中国节气</Description>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
 </Project>
