@@ -70,7 +70,12 @@ namespace HolidaySharp
             this.Name = GetHolidayName(this.SolarTime);
         }
 
-        public static IEnumerable<Holiday> GetMonthlyHolidays(int month)
+        public static IEnumerable<SolarHoliday> GetSolarMonthlyHolidays()
+        {
+            return GetSolarMonthlyHolidays(DateTime.Now.Year, DateTime.Now.Month);
+        }
+
+        public static IEnumerable<SolarHoliday> GetSolarMonthlyHolidays(int month)
         {
             if (ValidateMonth(month))
             {
@@ -80,7 +85,7 @@ namespace HolidaySharp
             return default;
         }
 
-        public static IEnumerable<Holiday> GetMonthlyHolidays(int year, int month)
+        public static IEnumerable<SolarHoliday> GetSolarMonthlyHolidays(int year, int month)
         {
             if (ValidateMonth(month) && ValidateYear(year))
             {
@@ -93,7 +98,7 @@ namespace HolidaySharp
             return default;
         }
 
-        public static IEnumerable<Holiday> GetMonthlyHolidays(DateTime solarTime)
+        public static IEnumerable<SolarHoliday> GetSolarMonthlyHolidays(DateTime solarTime)
         {
             if (ValidateTime(solarTime))
             {
@@ -103,12 +108,12 @@ namespace HolidaySharp
             return default;
         }
 
-        public static IEnumerable<Holiday> GetYearlyHolidays()
+        public static IEnumerable<SolarHoliday> GetSolarYearlyHolidays()
         {
             return GetYearlyHolidays(DateTime.Now);
         }
 
-        public static IEnumerable<Holiday> GetYearlyHolidays(DateTime solarTime)
+        public static IEnumerable<SolarHoliday> GetSolarYearlyHolidays(DateTime solarTime)
         {
             if (ValidateTime(solarTime))
             {
@@ -118,9 +123,29 @@ namespace HolidaySharp
             return default;
         }
 
-        public static IEnumerable<Holiday> GetYearlyHolidays(int year)
+        public static IEnumerable<SolarHoliday> GetSolarYearlyHolidays(int year)
         {
             return Holidays.GetSolarHolidays(year).Select(r => new SolarHoliday(r.Key, r.Value));
+        }
+
+        public static SolarHoliday GetSolarHoliday()
+        {
+            return GetSolarHoliday(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        }
+
+        public static SolarHoliday GetSolarHoliday(DateTime solarTime)
+        {
+            return GetSolarHoliday(solarTime.Year, solarTime.Month, solarTime.Day);
+        }
+
+        public static SolarHoliday GetSolarHoliday(int month, int day)
+        {
+            return GetSolarHoliday(DateTime.Now.Year, month, day);
+        }
+
+        public static SolarHoliday GetSolarHoliday(int year, int month, int day)
+        {
+            return Holidays.GetSolarHolidays(year).Where(r => r.Value.Day == day && r.Value.Month == month).Select(r => new SolarHoliday(r.Key, r.Value)).FirstOrDefault();
         }
 
         internal static string GetHolidayName(DateTime? time)

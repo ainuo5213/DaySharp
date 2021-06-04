@@ -72,7 +72,12 @@ namespace HolidaySharp
         {
         }
 
-        public static IEnumerable<Holiday> GetMonthlyHolidays(int month)
+        public static IEnumerable<LunarHoliday> GetLunarMonthlyHolidays()
+        {
+            return GetLunarMonthlyHolidays(DateTime.Now.Year, DateTime.Now.Month);
+        }
+
+        public static IEnumerable<LunarHoliday> GetLunarMonthlyHolidays(int month)
         {
             if (ValidateMonth(month))
             {
@@ -82,7 +87,7 @@ namespace HolidaySharp
             return default;
         }
 
-        public static IEnumerable<Holiday> GetMonthlyHolidays(int year, int month)
+        public static IEnumerable<LunarHoliday> GetLunarMonthlyHolidays(int year, int month)
         {
             if (ValidateMonth(month) && ValidateYear(year))
             {
@@ -95,7 +100,7 @@ namespace HolidaySharp
             return default;
         }
 
-        public static IEnumerable<Holiday> GetMonthlyHolidays(DateTime lunarTime)
+        public static IEnumerable<LunarHoliday> GetLunarMonthlyHolidays(DateTime lunarTime)
         {
             if (ValidateTime(lunarTime))
             {
@@ -105,12 +110,12 @@ namespace HolidaySharp
             return default;
         }
 
-        public static IEnumerable<Holiday> GetYearlyHolidays()
+        public static IEnumerable<LunarHoliday> GetLunarYearlyHolidays()
         {
             return GetYearlyHolidays(Holidays.Solar2Lunar(DateTime.Now));
         }
 
-        public static IEnumerable<Holiday> GetYearlyHolidays(DateTime lunarTime)
+        public static IEnumerable<LunarHoliday> GetLunarYearlyHolidays(DateTime lunarTime)
         {
             if (ValidateTime(lunarTime))
             {
@@ -120,9 +125,29 @@ namespace HolidaySharp
             return default;
         }
 
-        public static IEnumerable<Holiday> GetYearlyHolidays(int year)
+        public static IEnumerable<LunarHoliday> GetLunarYearlyHolidays(int year)
         {
             return Holidays.GetLunarHolidays(year).Select(r => new LunarHoliday(r.Key, r.Value));
+        }
+
+        public static LunarHoliday GetLunarHoliday(DateTime lunarTime)
+        {
+            return GetLunarHoliday(lunarTime.Year, lunarTime.Month, lunarTime.Day);
+        }
+
+        public static LunarHoliday GetLunarHoliday()
+        {
+            return GetLunarHoliday(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        }
+
+        public static LunarHoliday GetLunarHoliday(int month, int day)
+        {
+            return GetLunarHoliday(DateTime.Now.Year, month, day);
+        }
+
+        public static LunarHoliday GetLunarHoliday(int year, int month, int day)
+        {
+            return Holidays.GetLunarHolidays(year).Where(r => r.Value.Month == month && r.Value.Day == day).Select(r => new LunarHoliday(r.Key, r.Value)).FirstOrDefault();
         }
 
         internal static string GetHolidayName(DateTime? time)
