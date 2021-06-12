@@ -1,13 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace HolidaySharp
 {
     public class SolarTermHoliday : Holiday
     {
+        public readonly static SolarTermHoliday BAILU = new SolarTermHoliday(SolarTerms.BAILU);
+        public readonly static SolarTermHoliday CHUNFEN = new SolarTermHoliday(SolarTerms.CHUNFEN);
+        public readonly static SolarTermHoliday CHUSHU = new SolarTermHoliday(SolarTerms.CHUSHU);
+        public readonly static SolarTermHoliday DAHAN = new SolarTermHoliday(SolarTerms.DAHAN);
+        public readonly static SolarTermHoliday DASHU = new SolarTermHoliday(SolarTerms.DASHU);
+        public readonly static SolarTermHoliday DAXUE = new SolarTermHoliday(SolarTerms.DAXUE);
+        public readonly static SolarTermHoliday DONGZHI = new SolarTermHoliday(SolarTerms.DONGZHI);
+        public readonly static SolarTermHoliday GUYU = new SolarTermHoliday(SolarTerms.GUYU);
+        public readonly static SolarTermHoliday HANLU = new SolarTermHoliday(SolarTerms.HANLU);
+        public readonly static SolarTermHoliday JINGZHE = new SolarTermHoliday(SolarTerms.JINGZHE);
+        public readonly static SolarTermHoliday LICHUN = new SolarTermHoliday(SolarTerms.LICHUN);
+        public readonly static SolarTermHoliday LIDONG = new SolarTermHoliday(SolarTerms.LIDONG);
+        public readonly static SolarTermHoliday LIQIU = new SolarTermHoliday(SolarTerms.LIQIU);
+        public readonly static SolarTermHoliday LIXIA = new SolarTermHoliday(SolarTerms.LIXIA);
+        public readonly static SolarTermHoliday MANGZHONG = new SolarTermHoliday(SolarTerms.MANGZHONG);
+        public readonly static SolarTermHoliday QINGMING = new SolarTermHoliday(SolarTerms.QINGMING);
+        public readonly static SolarTermHoliday QIUFEN = new SolarTermHoliday(SolarTerms.QIUFEN);
+        public readonly static SolarTermHoliday SHUANGJIANG = new SolarTermHoliday(SolarTerms.SHUANGJIANG);
+        public readonly static SolarTermHoliday XIAOHAN = new SolarTermHoliday(SolarTerms.XIAOHAN);
+        public readonly static SolarTermHoliday XIAOSHU = new SolarTermHoliday(SolarTerms.XIAOSHU);
+        public readonly static SolarTermHoliday XIAOXUE = new SolarTermHoliday(SolarTerms.XIAOXUE);
+        public readonly static SolarTermHoliday XIAZHI = new SolarTermHoliday(SolarTerms.XIAZHI);
+        public readonly static SolarTermHoliday YUSHUI = new SolarTermHoliday(SolarTerms.YUSHUI);
         public SolarTermHoliday()
+        {
+        }
+        public SolarTermHoliday(SolarTerms solarTerm): this(GetSolarTermAttr(solarTerm))
         {
         }
         public SolarTermHoliday(string name)
@@ -134,6 +161,12 @@ namespace HolidaySharp
         private static SolarTerm GetSolarTerm(string name, int year)
         {
             return SolarTerm.GetSolarTerm(name, year);
+        }
+        private static string GetSolarTermAttr(SolarTerms solarTerm)
+        {
+            FieldInfo filed = solarTerm.GetType().GetField(solarTerm.ToString());
+            SolarTermDescriptionAttribute attr = filed.GetCustomAttribute<SolarTermDescriptionAttribute>();
+            return attr?.Name;
         }
     }
 }

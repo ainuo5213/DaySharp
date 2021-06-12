@@ -13,67 +13,34 @@ namespace HolidaySharp
             return GetSolarHolidays(DateTime.Now.Year);
         }
 
+        /// <summary>
+        /// 获取国家阳历节日和部分国际重大节日
+        /// </summary>
+        /// <param name="year">年</param>
+        /// <returns>节日字典</returns>
         public static Dictionary<string, DateTime> GetSolarHolidays(int year)
         {
             Dictionary<string, DateTime> solarHolidays = new Dictionary<string, DateTime>()
             {
-                {
-                    NewYearDay, FormatSolarHoliday(year, 1,1)
-                },
-                {
-                    PoliceDay, FormatSolarHoliday(year, 1,10)
-                },
-                {
-                    ValentineDay, FormatSolarHoliday(year, 2,14)
-                },
-                {
-                    CirisDay, FormatSolarHoliday(year, 3,7)
-                },
-                {
-                    WomenDay, FormatSolarHoliday(year, 3,8)
-                },
-                {
-                    ArborDay, FormatSolarHoliday(year, 3,12)
-                },
-                {
-                    FoolDay, FormatSolarHoliday(year, 4,1)
-                },
-                {
-                    LabourDay, FormatSolarHoliday(year, 5,1)
-                },
-                {
-                    YouthDay, FormatSolarHoliday(year, 5,4)
-                },
-                {
-                    MotherDay, GetMontherDay(year)
-                },
-                {
-                    ChildDay, FormatSolarHoliday(year, 6,1)
-                },
-                {
-                    FatherDay, GetFatherDay(year)
-                },
-                {
-                    PartyDay, FormatSolarHoliday(year, 7,1)
-                },
-                {
-                    ArmyDay, FormatSolarHoliday(year, 8,1)
-                },
-                {
-                    TeacherDay, FormatSolarHoliday(year, 9,10)
-                },
-                {
-                    NationalDay, FormatSolarHoliday(year, 10,1)
-                },
-                {
-                    ThanksGivingDay, GetThanksGivingDay(year)
-                },
-                {
-                    ChristmasEveDay, FormatSolarHoliday(year, 12,24)
-                },
-                {
-                    ChristmasDay, FormatSolarHoliday(year, 12,25)
-                },
+                { NewYearDay, FormatSolarHoliday(year, 1,1) },
+                { PoliceDay, FormatSolarHoliday(year, 1,10) },
+                { ValentineDay, FormatSolarHoliday(year, 2,14) },
+                { CirisDay, FormatSolarHoliday(year, 3,7) },
+                { WomenDay, FormatSolarHoliday(year, 3,8) },
+                { ArborDay, FormatSolarHoliday(year, 3,12) },
+                { FoolDay, FormatSolarHoliday(year, 4,1) },
+                { LabourDay, FormatSolarHoliday(year, 5,1) },
+                { YouthDay, FormatSolarHoliday(year, 5,4) },
+                { MotherDay, GetMontherDay(year) },
+                { ChildDay, FormatSolarHoliday(year, 6,1) },
+                { FatherDay, GetFatherDay(year) },
+                { PartyDay, FormatSolarHoliday(year, 7,1) },
+                { ArmyDay, FormatSolarHoliday(year, 8,1) },
+                { TeacherDay, FormatSolarHoliday(year, 9,10) },
+                { NationalDay, FormatSolarHoliday(year, 10,1) },
+                { ThanksGivingDay, GetThanksGivingDay(year) },
+                { ChristmasEveDay, FormatSolarHoliday(year, 12,24) },
+                { ChristmasDay, FormatSolarHoliday(year, 12,25) },
             };
 
             return solarHolidays;
@@ -84,6 +51,11 @@ namespace HolidaySharp
             return GetLunarHolidays(DateTime.Now.Year);
         }
 
+        /// <summary>
+        /// 获取国家传统节日
+        /// </summary>
+        /// <param name="year">年</param>
+        /// <returns>节日字典</returns>
         public static Dictionary<string, DateTime> GetLunarHolidays(int year)
         {
             Dictionary<string, DateTime> lunarHolidays = new Dictionary<string, DateTime>()
@@ -108,7 +80,6 @@ namespace HolidaySharp
 
             return lunarHolidays;
         }
-
 
 
         // solar holiday
