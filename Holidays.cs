@@ -21,6 +21,9 @@ namespace HolidaySharp
                     NewYearDay, FormatSolarHoliday(year, 1,1)
                 },
                 {
+                    PoliceDay, FormatSolarHoliday(year, 1,10)
+                },
+                {
                     ValentineDay, FormatSolarHoliday(year, 2,14)
                 },
                 {
@@ -30,10 +33,16 @@ namespace HolidaySharp
                     WomenDay, FormatSolarHoliday(year, 3,8)
                 },
                 {
+                    ArborDay, FormatSolarHoliday(year, 3,12)
+                },
+                {
                     FoolDay, FormatSolarHoliday(year, 4,1)
                 },
                 {
                     LabourDay, FormatSolarHoliday(year, 5,1)
+                },
+                {
+                    YouthDay, FormatSolarHoliday(year, 5,4)
                 },
                 {
                     MotherDay, GetMontherDay(year)
@@ -119,6 +128,10 @@ namespace HolidaySharp
         public const string ChristmasDay = "圣诞节";
         public const string ArmyDay = "建军节";
         public const string PartyDay = "建党节";
+        public const string PoliceDay = "中国人民警察节";
+        public const string YouthDay = "青年节";
+        public const string ArborDay = "植树节";
+
 
         // lunar holiday
         public const string NorthernLittleNewYear = "北方小年";

@@ -8,6 +8,7 @@ namespace HolidaySharp
     public class SolarHoliday : Holiday
     {
         public readonly static SolarHoliday NewYearDay = new SolarHoliday(Holidays.NewYearDay);
+        public readonly static LunarHoliday PoliceDay = new LunarHoliday(Holidays.PoliceDay);
         public readonly static SolarHoliday ValentineDay = new SolarHoliday(Holidays.ValentineDay);
         public readonly static SolarHoliday CirisDay = new SolarHoliday(Holidays.CirisDay);
         public readonly static SolarHoliday WomenDay = new SolarHoliday(Holidays.WomenDay);
